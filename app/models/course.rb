@@ -20,5 +20,5 @@ class Course < ApplicationRecord
   #  require 'securerandom'
   #  @random_slug ||= persisted? ? friendly_id: SecureRandom.hex(4)
   #end
-  
+
 end
