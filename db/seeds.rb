@@ -1,4 +1,4 @@
-User.create!(email: 'admin@example', password: 'admin@example', password_confirmation: 'admin@example')
+User.create_with(email: 'admin@example', password: 'admin@example', password_confirmation: 'admin@example', confirmed_at: Time.now).find_or_create_by!(email: 'admin@example')
 
 30.times do
   Course.create!([{
