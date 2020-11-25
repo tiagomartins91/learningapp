@@ -6,6 +6,10 @@
   .form-inputs
     = f.input :title
     = f.input :description, as: :rich_text_area
+    = f.input :short_description
+    = f.input :language, collection: %w[English Portuguese]
+    = f.input :level, collection: %w[Beginner Intermediate Advanced]
+    = f.input :price
 
   .form-actions
     = f.button :submit
