@@ -2,7 +2,32 @@
   Courses:
   = @courses.count
 
-.card-columns
-  - @courses.each do |course|
-    = render 'courses/course', course: course
+.row
+  .col-md-2
+    = search_form_for @q do |f|
+      = f.label :tittle
+      = f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm mb-1'
+      = f.label :short_description
+      = f.search_field :short_description_cont, placeholder: 'Short description', class: 'form-control form-control-sm mb-1'
+      = f.label :language
+      /= f.search_field :language_cont, placeholder: 'Language', class: 'form-control form-control-sm mb-1'
+      %br
+      = f.select :language_cont, Course.languages, include_blank: true
+      %br
+      = f.label :level
+      %br
+      = f.select :level_cont, Course.levels, include_blank: true
+      %br
+      = f.label :price
+      = f.search_field :price_eq, placeholder: 'Price', class: 'form-control form-control-sm mb-1'
+      = f.label :teacher
+      = f.search_field :user_email_cont, placeholder: 'Email', class: 'form-control form-control-sm mb-1'
+      = f.submit
+    = link_to 'Refresh', courses_path
+
+
+  .col-md-10
+    .card-columns
+      - @courses.each do |course|
+        = render 'courses/course', course: course
 %br
