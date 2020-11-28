@@ -1,0 +1,22 @@
+%hr
+%footer
+  .container
+    .row
+      .col-md-4
+        Copyright
+        @
+        =  Time.now.year
+        LearningPlatform
+        .row
+        .fa.fa-envelope
+        = mail_to 'learning-app.com'
+        .row
+      .col-md-4
+        Privacy policy
+        .row
+        Terms and conditions
+      .col-md-4
+        About us
+        .row
+        = link_to 'Teach on', new_course_path
+%br
