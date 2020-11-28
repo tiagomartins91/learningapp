@@ -5,7 +5,7 @@ class Course < ApplicationRecord
   belongs_to :user
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
 
   def to_s
     title

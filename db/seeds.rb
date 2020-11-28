@@ -1,5 +1,5 @@
 User.create_with(email: 'admin@example', password: 'admin@example', password_confirmation: 'admin@example', confirmed_at: Time.now).find_or_create_by!(email: 'admin@example')
-User.create_with(email: 'admin2@example', password: 'admin2@example', password_confirmation: 'admin2@example', confirmed_at: Time.now).find_or_create_by!(email: 'admin2@example')
+User.create_with(email: 'teacher@example', password: 'teacher@example', password_confirmation: 'teacher@example', confirmed_at: Time.now).find_or_create_by!(email: 'teacher@example')
 
 30.times do
   Course.create!([{
