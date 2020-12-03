@@ -1,7 +1,11 @@
 .card
-  .card-header
-    .fa.fa-user
-    = link_to user.email, user_path(user)
+  .card-header.d-flex.justify-content-between
+    .d-flex.fa.fa-user
+      = link_to user.email, user_path(user), class: 'ml-2'
+    - if user.online?
+      .d.flex.text-success.fa.fa-circle
+    - else
+      .d.flex.text-danger.fa.fa-circle
   .card-footer
     Signed up
     = time_ago_in_words(user.created_at)
