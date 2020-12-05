@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def activity
-    @activities = PublicActivity::Activity.all
+    @activities = PublicActivity::Activity.all.order(updated_at: :desc)
   end
 
 
