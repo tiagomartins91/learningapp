@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :content
+    = f.input :content, as: :rich_text_area
     - unless params[:course_id]
       = f.association :course
     = f.input :course_id, input_html: {value: @lesson.course_id || params[:course_id]}, as: :hidden
