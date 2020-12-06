@@ -17,9 +17,9 @@
         %td= lesson.content
         %td= lesson.course
         %td= link_to 'Show', lesson
-        %td= link_to 'Edit', edit_lesson_path(lesson)
+        %td= link_to 'Edit', edit_course_lesson_path(lesson)
         %td= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Lesson', new_lesson_path
+= link_to 'New Lesson', new_course_lesson_path
