@@ -4,21 +4,23 @@
     .badge.badge-info
       = @users.count
 %p
-.card-columns
-  - @users.each do |user|
-    = render 'users/user', user: user
+//.card-columns
+//  - @users.each do |user|
+//    = render 'users/user', user: user
+
 
 = search_form_for @q do |f|
   //= f.search_field :email_cont, placeholder: 'Email'
   //= f.search_field :sign_in_count_eq, placeholder: 'Sign in count'
   = f.search_field :email_or_sign_in_count_eq, placeholder: 'Email or sign in count'
   = f.submit
-= link_to users_path, class: 'btn btn-sm btn-secondary' do
-  .fa.fa-sync
+  = link_to users_path, class: 'btn btn-sm btn-secondary' do
+    //.fa.fa-sync
+    Refresh
 
-%table.table.table-bordered
+%table.table.table-bordered.table-striped.table-hover.mt-3
   %thead
-    %tr
+    %tr.thead-dark
       %th id
       %th= sort_link(@q, :email)
       %th created_at
@@ -27,6 +29,8 @@
       %th= 'last_sign_in_at'.humanize
       %th= 'current_sign_in_ip'.humanize
       %th= 'last_sign_in_ip'.humanize
+      %th Confirmed?
+      %th Roles
   %tbody
     - @users.each do |user|
       %tr
@@ -38,6 +42,17 @@
         %td= user.last_sign_in_at
         %td= user.current_sign_in_ip
         %td= user.last_sign_in_ip
+        %td
+          - if user.confirmed_at.present?
+            .badge.badge-success Yes
+          - else
+            .badge.badge-danger No
+        %td
+          - user.roles.each do |role|
+            .badge.badge-info
+              = role.name.humanize
+          - if policy(user).edit?
+            = link_to 'Edit roles', edit_user_path(user), class: 'btn btn-sm btn-warning float-right'
 
 
 
