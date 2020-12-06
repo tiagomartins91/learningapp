@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   after_action :user_activity
 
+  include Pagy::Backend
+
   include PublicActivity::StoreController
 
   include Pundit
