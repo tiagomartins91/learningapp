@@ -1,10 +1,17 @@
+- content_for :title do
+  App
+  \|
+  Course
+  = @course.title
+  \|
+  New lesson
+
 = link_to 'Courses', courses_path
 \/
 = link_to @course.title, course_path(@course)
 \/
 New
 %p
-
 .card
   .card-header
     %h3
