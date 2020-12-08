@@ -15,54 +15,55 @@
 
 
 = search_form_for @q do |f|
-  //= f.search_field :email_cont, placeholder: 'Email'
+  = f.search_field :email_cont, placeholder: 'Email'
   //= f.search_field :sign_in_count_eq, placeholder: 'Sign in count'
-  = f.search_field :email_or_sign_in_count_eq, placeholder: 'Email or sign in count'
+  //= f.search_field :email_or_sign_in_count_eq, placeholder: 'Email or sign in count'
   = f.submit
   = link_to users_path, class: 'btn btn-sm btn-secondary' do
     //.fa.fa-sync
     Refresh
 
-%table.table.table-bordered.table-hover.mt-3
-  %thead
-    %tr.thead-dark
-      %th id
-      %th= sort_link(@q, :email)
-      %th created_at
-      %th= 'sign_in_count'.humanize
-      %th= 'current_sign_in_at'.humanize
-      %th= 'last_sign_in_at'.humanize
-      %th= 'current_sign_in_ip'.humanize
-      %th= 'last_sign_in_ip'.humanize
-      %th Confirmed?
-      %th Roles
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.id
-        %td
-          - if user.online?
-            .d.flex.text-success.fa.fa-circle
-          - else
-            .d.flex.text-danger.fa.fa-circle
-          = link_to user.email, user_path(user)
-        %td= user.created_at
-        %td= user.sign_in_count
-        %td= user.current_sign_in_at
-        %td= user.last_sign_in_at
-        %td= user.current_sign_in_ip
-        %td= user.last_sign_in_ip
-        %td
-          - if user.confirmed_at.present?
-            .badge.badge-success Yes
-          - else
-            .badge.badge-danger No
-        %td
-          - user.roles.each do |role|
-            .badge.badge-info
-              = role.name.humanize
-          - if policy(user).edit?
-            = link_to 'Edit roles', edit_user_path(user), class: 'btn btn-sm btn-warning float-right'
+.table-responsive
+  %table.table.table-bordered.table-hover.table-sm.mt-3
+    %thead
+      %tr.thead-dark
+        %th id
+        %th= sort_link(@q, :email)
+        %th created_at
+        %th= 'sign_in_count'.humanize
+        %th= 'current_sign_in_at'.humanize
+        %th= 'last_sign_in_at'.humanize
+        %th= 'current_sign_in_ip'.humanize
+        %th= 'last_sign_in_ip'.humanize
+        %th Confirmed?
+        %th Roles
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td
+            - if user.online?
+              .d.flex.text-success.fa.fa-circle
+            - else
+              .d.flex.text-danger.fa.fa-circle
+            = link_to user.email, user_path(user)
+          %td= user.created_at
+          %td= user.sign_in_count
+          %td= user.current_sign_in_at
+          %td= user.last_sign_in_at
+          %td= user.current_sign_in_ip
+          %td= user.last_sign_in_ip
+          %td
+            - if user.confirmed_at.present?
+              .badge.badge-success Yes
+            - else
+              .badge.badge-danger No
+          %td
+            - user.roles.each do |role|
+              .badge.badge-info
+                = role.name.humanize
+            - if policy(user).edit?
+              = link_to 'Edit roles', edit_user_path(user), class: 'btn btn-sm btn-warning float-right'
 
 
 

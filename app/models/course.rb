@@ -4,6 +4,7 @@ class Course < ApplicationRecord
 
   belongs_to :user
   has_many :lessons, dependent: :destroy
+  has_many :enrollments
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
