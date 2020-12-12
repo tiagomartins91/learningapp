@@ -11,29 +11,45 @@
 
 %p
 
-.table-responsive
+= search_form_for @q do |f|
+  = f.search_field :user_email_cont, placeholder: 'user email'
+  = f.search_field :course_title_cont, placeholder: 'course title'
+  = f.search_field :price_eq, placeholder: 'price'
+  = f.search_field :rating_eq, placeholder: 'rating'
+  = f.search_field :review_cont, placeholder: 'review'
+  = f.submit
+  = link_to enrollments_path, class: 'btn btn-sm btn-secondary' do
+    Refresh
+
+.table-responsive.mt-2
   %table.table.table-striped.table-sm
     %thead
       %tr
         %th ID
         %th
-          .fa.fa-user
-          User
+          = sort_link(@q, :user_email) do
+            .text-dark.fa.fa-user
+            User
         %th
-          .fa.fa-clock
-          Bought date
+          = sort_link(@q, :created_at) do
+            .text-dark.fa.fa-clock
+            Bought date
         %th
-          .fa.fa-graduation-cap
-          Course
+          = sort_link(@q, :course_title) do
+            .text-dark.fa.fa-graduation-cap
+            Course
         %th
-          .fa.fa-dollar-sign
-          Price
+          = sort_link(@q, :price) do
+            .text-dark.fa.fa-dollar-sign
+            Price
         %th
-          .text-warning.fa.fa-clock
-          Reviewed on
+          = sort_link(@q, :updated_at) do
+            .text-warning.fa.fa-clock
+            Reviewed on
         %th
-          .text-warning.fa.fa-star
-          Rating
+          = sort_link(@q, :rating) do
+            .text-warning.fa.fa-star
+            Rating
         %th
           .text-warning.fa.fa-comment
           Review
