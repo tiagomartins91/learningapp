@@ -1,8 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  # GET /courses
-  # GET /courses.json
   def index
     #if params[:title]
     #  @courses = Course.where("title ILIKE ?", "%#{params[:title]}%")
@@ -11,31 +9,57 @@ class CoursesController < ApplicationController
       #@q = Course.ransack(params[:q])
       #@courses = @q.result.includes(:user)
     #end
+
+    @ransack_path = courses_path
+
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_path)
     #@courses = @ransack_courses.result.includes(:user)
 
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
   def show
     @lessons = @course.lessons
   end
 
-  # GET /courses/new
+  def purchased
+    @ransack_path = purchased_courses_path
+
+    @ransack_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).ransack(params[:courses_search], search_key: :courses_path)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+
+    render 'index'
+  end
+
+  def pending_review
+    @ransack_path = pending_review_courses_path
+
+    @ransack_courses = Course.joins(:enrollments).merge(Enrollment.pending_review.where(user: current_user)).ransack(params[:courses_search], search_key: :courses_path)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+
+    render 'index'
+  end
+
+  def created
+    @ransack_path = created_courses_path
+
+    @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_path)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+
+    render 'index'
+  end
+
+
   def new
     @course = Course.new
     authorize @course
   end
 
-  # GET /courses/1/edit
   def edit
     authorize @course
   end
 
-  # POST /courses
-  # POST /courses.json
+
   def create
     @course = Course.new(course_params)
     authorize @course
@@ -52,8 +76,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
   def update
     authorize @course
     respond_to do |format|
@@ -67,8 +89,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
   def destroy
     authorize @course
     @course.destroy
