@@ -19,10 +19,7 @@ module CoursesHelper
   end
 
   def review_button(course)
-
-    unless current_user
-      return link_to "Check price", course_path(course), class: "btn btn-md btn-success"
-    end
+    return unless current_user
 
     if is_enrollment_not_reviewed(course, current_user)
       return link_to 'Add a review', edit_enrollment_path(user_course_enrollments(course, current_user))
