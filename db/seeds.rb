@@ -6,8 +6,11 @@ user = User.new(
 user.skip_confirmation!
 user.save!
 
-User.create_with(email: 'user@example', password: 'user@example',
-                 password_confirmation: 'user@example', confirmed_at: Time.now).find_or_create_by!(email: 'user@example')
+User.create_with(email: 'teacher@example', password: 'teacher@example',
+                 password_confirmation: 'teacher@example', confirmed_at: Time.now).find_or_create_by!(email: 'teacher@example')
+
+User.create_with(email: 'student@example', password: 'student@example',
+                 password_confirmation: 'student@example', confirmed_at: Time.now).find_or_create_by!(email: 'student@example')
 
 
 PublicActivity.enabled = false
