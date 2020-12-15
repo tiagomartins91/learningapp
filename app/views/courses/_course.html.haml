@@ -11,16 +11,17 @@
       .row
       = review_button(course)
   .card-footer
-    .d-flex.justify-content-between
-      .text-warning.fa.fa-star
-        = course.average_rating
-      Enrollments count:
-      = course.enrollments_count
+    .text-warning.fa.fa-star.mr-2
+      = course.average_rating
+    (
+    .fa.fa-user-graduate
+    = course.enrollments_count
+    )
   .card-footer
     .row
       .col-md-12
         .fa.fa-tasks
-          = course.lessons.count
+          = course.lessons_count
   .card-footer
     .row
       .col-md-6
