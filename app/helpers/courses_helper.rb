@@ -22,11 +22,15 @@ module CoursesHelper
     return unless current_user
 
     if is_enrollment_not_reviewed(course, current_user)
-      return link_to 'Add a review', edit_enrollment_path(user_course_enrollments(course, current_user))
+      return link_to edit_enrollment_path(user_course_enrollments(course, current_user)) do
+        "<i class='text-warning fa fa-star'></i>".html_safe + " " + 'Add a review'
+      end
     end
 
     unless course.user == current_user || !is_user_enroll_this_course(course, current_user)
-      link_to 'Thanks for reviewing! Your review.', enrollment_path(user_course_enrollments(course, current_user))
+      link_to enrollment_path(user_course_enrollments(course, current_user)) do
+        "<i class='fa fa-check'></i>".html_safe + " " + 'Thanks for reviewing! Your review.'
+      end
     end
 
   end
