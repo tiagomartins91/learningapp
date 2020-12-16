@@ -8,6 +8,11 @@ class Course < ApplicationRecord
   has_many :lessons, dependent: :destroy
   has_many :enrollments
 
+
+  scope :latest_courses, -> { limit(3).order(created_at: :desc) }
+  scope :top_rated_courses, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
+  scope :popular_courses, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
+
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
 

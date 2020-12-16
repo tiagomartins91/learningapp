@@ -60,35 +60,35 @@
   %h2
     .fa.fa-user-graduate
     Continue learning
-  .card-columns.mt-2
+  .card-columns.mt-3
     - @purchased_courses.each do |course|
       = render 'courses/course', course: course
 %hr
 %h2
   .fa.fa-chart-line
   Popular courses
-.card-columns.mt-2
-  - @popular_courses.each do |course|
+.card-columns.mt-3
+  - @popular.each do |course|
     = render 'courses/course', course: course
 %hr
 %h2
   .fa.fa-star
   Top rated courses
-.card-columns.mt-2
-  - @top_rated_courses.each do |course|
+.card-columns.mt-3
+  - @top_rated.each do |course|
     = render 'courses/course', course: course
 %hr
 %h2
   .fa.fa-clock
   Latest courses
-.card-columns.mt-2
-  - @latest_courses.each do |course|
+.card-columns.mt-3
+  - @latest.each do |course|
     = render 'courses/course', course: course
 %hr
 %h2
   .fa.fa-comment
   What our students have to say
-.card-columns.mt-2
+.card-columns.mt-3
   - @latest_good_reviews.each do |enrollment|
     = render 'enrollments/enrollment', enrollment: enrollment
 
