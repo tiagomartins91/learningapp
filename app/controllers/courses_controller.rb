@@ -12,10 +12,11 @@ class CoursesController < ApplicationController
 
     @ransack_path = courses_path
 
-    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_path)
+    @ransack_courses = Course.ransack(params[:courses_path], search_key: :courses_path)
+
     #@courses = @ransack_courses.result.includes(:user)
 
-    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    @pagy, @courses = pagy(@ransack_courses.result(distinct: true).includes(:user))
   end
 
   def show
