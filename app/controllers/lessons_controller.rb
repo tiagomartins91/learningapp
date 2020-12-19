@@ -1,25 +1,20 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
 
-  # GET /lessons/1
-  # GET /lessons/1.json
   def show
     authorize @lesson
+    current_user.view_lesson(@lesson)
   end
 
-  # GET /lessons/new
   def new
     @lesson = Lesson.new
     @course = Course.friendly.find(params[:course_id])
   end
 
-  # GET /lessons/1/edit
   def edit
     authorize @lesson
   end
 
-  # POST /lessons
-  # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
     @course = Course.friendly.find(params[:course_id])
@@ -36,8 +31,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lessons/1
-  # PATCH/PUT /lessons/1.json
   def update
     authorize @lesson
     respond_to do |format|
@@ -51,8 +44,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  # DELETE /lessons/1
-  # DELETE /lessons/1.json
   def destroy
     authorize @lesson
     @lesson.destroy
