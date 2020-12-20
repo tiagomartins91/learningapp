@@ -10,8 +10,21 @@ class HomeController < ApplicationController
   end
 
   def activity
+    unless current_user.has_role?(:admin)
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
+    
     @activities = PublicActivity::Activity.all.order(updated_at: :desc)
   end
 
+  def analytics
+    unless current_user.has_role?(:admin)
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
+
+    @users = User.all
+    @enrollments = Enrollment.all
+    @courses = Course.all
+  end
 
 end

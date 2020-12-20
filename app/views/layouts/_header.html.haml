@@ -77,6 +77,9 @@
               = link_to activity_path, class: "dropdown-item" do
                 .fa.fa-bell
                 Activity
+              = link_to analytics_path, class: "dropdown-item" do
+                .fa.fa-chart-line
+                Analytics
       %ul.navbar-nav.mr-right
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
           %b= current_user.email
