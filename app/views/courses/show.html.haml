@@ -27,8 +27,9 @@
         = @course.description
     %h4
       .fa.fa-tasks
-      Lessons:
-      = @course.lessons_count
+      = pluralize(@course.lessons_count, 'lesson')
+      //Lessons:
+      //= @course.lessons_count
       .float-right
         .fa.fa-spinner
         = number_to_percentage(@course.progress(current_user), precision: 0)
@@ -39,8 +40,9 @@
     .mt-3
       %h4
         .fa.fa-comment
-        Reviews:
-        = @enrollments_with_review.count
+        = pluralize(@enrollments_with_review.count, 'review')
+        //Reviews:
+        //= @enrollments_with_review.count
         .mt-3
       - @enrollments_with_review.each do |enrollment|
         = render 'enrollments/enrollment', enrollment: enrollment
