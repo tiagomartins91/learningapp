@@ -17,5 +17,9 @@
 //= pie_chart @enrollments.joins(:course).group(:'courses.title').count
 = bar_chart charts_course_popularity_path
 
+%h4.text-center.mb-3
+  Money paid courses
+= bar_chart charts_money_markers_path
+
 
 
