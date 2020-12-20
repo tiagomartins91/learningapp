@@ -8,10 +8,44 @@
 = link_to @course.title, course_path(@course)
 %p
 .row
-  .col-lg-6.w-100
-    = render 'courses/course', course: @course
-  .col-lg-6.w-100
-    - if policy(@course).owner?
-      = link_to 'Add lesson', new_course_lesson_path(@course, @lesson), class: 'btn btn-sm btn-primary w-100 mb-3'
-    - @lessons.each do |lesson|
-      = render 'lessons/lesson', lesson: lesson
+  .col-lg-7.w-100.order-1.order-lg-1
+    .jumbotron.mt-3
+      %h3
+        .fa.fa-graduation-cap
+          = @course.title
+        .p-3
+      %h5
+        .fa.fa-clock
+        = @course.updated_at.strftime("%b %Y")
+        .row.mt-2
+        .fa.fa-globe-africa
+        = @course.language
+        .row.mt-2
+        .fa.fa-signal
+        = @course.level
+        .p-3
+        = @course.description
+    %h4
+      .fa.fa-tasks
+      Lessons:
+      = @course.lessons_count
+      .float-right
+        .fa.fa-spinner
+        = number_to_percentage(@course.progress(current_user), precision: 0)
+    .mt-3
+      %ul.list-group
+        - @lessons.each do |lesson|
+          = render 'lessons/lesson_preview', lesson: lesson
+    .mt-3
+      %h4
+        .fa.fa-comment
+        Reviews:
+        = @enrollments_with_review.count
+        .mt-3
+      - @enrollments_with_review.each do |enrollment|
+        = render 'enrollments/enrollment', enrollment: enrollment
+        %p
+
+  .col-lg-5.w-100.order-0.order-lg-1
+    .sticky-top.mt-3
+      = render 'courses/course', course: @course

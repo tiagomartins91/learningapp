@@ -21,6 +21,7 @@ class CoursesController < ApplicationController
 
   def show
     @lessons = @course.lessons
+    @enrollments_with_review = @course.enrollments.reviewed
   end
 
   def purchased

@@ -10,11 +10,11 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.user.id == @user.id if @user
+    @record.user == @user if @user
   end
 
   def update?
-    @record.user.id == @user.id if @user
+    @record.user == @user if @user
   end
 
   def destroy?
