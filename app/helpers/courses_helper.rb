@@ -12,7 +12,11 @@ module CoursesHelper
     end
 
     if is_user_enroll_this_course(course, current_user)
-      return link_to "You bought this course. Keep learning!", course_path(course)
+      return link_to course_path(course) do
+        #"You bought this course. Keep learning!" + " " +
+        "<i class='fa fa-spinner'></i>".html_safe + " " + number_to_percentage(course.progress(current_user), precision: 0)
+      end
+
     end
 
     link_to  course.price > 0 ? number_to_currency(course.price): "Free", new_course_enrollment_path(course), class: "btn btn-md btn-success"
