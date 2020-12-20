@@ -36,7 +36,8 @@
     .mt-3
       %ul.list-group
         - @lessons.each do |lesson|
-          = render 'lessons/lesson_preview', lesson: lesson
+          %li.list-group-item
+            = render 'lessons/lesson_preview', lesson: lesson
     .mt-3
       %h4
         .fa.fa-comment
