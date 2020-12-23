@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
 
   def index
     #if params[:title]
@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
 
     @ransack_path = courses_path
 
-    @ransack_courses = Course.ransack(params[:courses_path], search_key: :courses_path)
+    @ransack_courses = Course.published.approved.ransack(params[:courses_path], search_key: :courses_path)
 
     #@courses = @ransack_courses.result.includes(:user)
 
@@ -26,31 +26,43 @@ class CoursesController < ApplicationController
 
   def purchased
     @ransack_path = purchased_courses_path
-
     @ransack_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).ransack(params[:courses_search], search_key: :courses_path)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
-
     render 'index'
   end
 
   def pending_review
     @ransack_path = pending_review_courses_path
-
     @ransack_courses = Course.joins(:enrollments).merge(Enrollment.pending_review.where(user: current_user)).ransack(params[:courses_search], search_key: :courses_path)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
-
     render 'index'
   end
 
   def created
     @ransack_path = created_courses_path
-
     @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_path)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
-
     render 'index'
   end
 
+  def unapproved
+    @ransack_path = unapproved_courses_path
+    @ransack_courses = Course.unapproved.ransack(params[:courses_search], search_key: :courses_path)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    render 'index'
+  end
+
+  def approve
+    authorize @course, :approve?
+    @course.update_attribute(:approved, true)
+    redirect_to @course, notice: 'Course approved and visible!'
+  end
+
+  def unapprove
+    authorize @course, :approve?
+    @course.update_attribute(:approved, false)
+    redirect_to @course, notice: 'Course unapproved and hidden!'
+  end
 
   def new
     @course = Course.new
@@ -111,6 +123,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price)
+      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published)
     end
 end

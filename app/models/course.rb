@@ -9,10 +9,13 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons
 
-
   scope :latest_courses, -> { limit(3).order(created_at: :desc) }
   scope :top_rated_courses, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
   scope :popular_courses, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
+  scope :published, -> { where(published: true) }
+  scope :approved, -> { where(approved: true) }
+  scope :unpublished, -> { where(published: false) }
+  scope :unapproved, -> { where(approved: false) }
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
