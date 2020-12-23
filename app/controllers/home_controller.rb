@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       redirect_to root_path, alert: "You are not authorized to access this page."
     end
 
-    @activities = PublicActivity::Activity.all.order(updated_at: :desc)
+    @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :desc))
   end
 
   def analytics
