@@ -15,6 +15,7 @@
       // = activity.id
       = activity.created_at.strftime("%d-%m-%Y %H:%m")
       (#{time_ago_in_words(activity.created_at)})
+      = modal_label(activity.trackable_type)
       = activity.trackable_type
       // = activity.trackable_id
       - if activity.trackable_type == 'Lesson'
@@ -24,7 +25,8 @@
           Lesson was deleted.
       - else
         = link_to activity.trackable, activity.trackable
-      = activity.key
+      // = activity.key
+      = crud_label(activity.key.match(/\.(.*)/)[1])
       by
       = link_to activity.owner, user_path(activity.owner)
       - if activity.parameters.any?
