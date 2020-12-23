@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
 
     @ransack_path = courses_path
 
-    @ransack_courses = Course.published.approved.ransack(params[:courses_path], search_key: :courses_path)
+    @ransack_courses = Course.published.approved.ransack(params[:courses_search], search_key: :courses_search)
 
     #@courses = @ransack_courses.result.includes(:user)
 
