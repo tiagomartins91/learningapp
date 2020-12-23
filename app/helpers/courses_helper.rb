@@ -4,7 +4,7 @@ module CoursesHelper
 
     #link to check price
     unless current_user
-      return link_to "Check price", course_path(course), class: "btn btn-md btn-success"
+      return link_to "Check price", new_course_enrollment_path(course), class: "btn btn-md btn-success"
     end
 
     if course.user == current_user
