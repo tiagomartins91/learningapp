@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     member do
+      get :analytics
       patch :approve
       patch :unapprove
     end
