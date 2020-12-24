@@ -54,6 +54,14 @@ class LessonsController < ApplicationController
     end
   end
 
+  def sort
+    @course = Course.friendly.find(params[:course_id])
+    lesson = Lesson.friendly.find(params[:lesson_id])
+    authorize lesson, :edit?
+    lesson.update(lesson_params)
+    render body: nil
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
@@ -63,6 +71,6 @@ class LessonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:title, :content)
+      params.require(:lesson).permit(:title, :content, :row_order_position)
     end
 end
