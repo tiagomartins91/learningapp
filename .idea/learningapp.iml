@@ -101,6 +101,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.3.0, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v6.0.3.4, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.1, Remote: ruby-2.7.2-p137) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ranked-model (v0.4.6, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ransack (v2.3.2, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.4, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.1, Remote: ruby-2.7.2-p137) [gem]" level="application" />
