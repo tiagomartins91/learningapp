@@ -5,6 +5,13 @@
 
   .form-inputs
     = f.input :title
+    = f.label :avatar
+    .row
+    - if @course.avatar.attached?
+      = image_tag @course.avatar, width: "50px"
+    .row.mt-3
+    = f.file_field :avatar
+    .row.mt-3
     = f.input :description, as: :rich_text_area
     = f.input :short_description
     = f.input :language, collection: Course.languages, include_blank: true

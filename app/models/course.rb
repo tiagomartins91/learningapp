@@ -20,6 +20,8 @@ class Course < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
 
+  has_one_attached :avatar
+
   def to_s
     title
   end
