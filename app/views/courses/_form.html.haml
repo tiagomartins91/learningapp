@@ -9,8 +9,12 @@
     .row
     - if @course.avatar.attached?
       = image_tag @course.avatar, width: "50px"
+      //= @course.avatar.content_type
+      = @course.avatar.filename
+      // = @course.avatar.key
     .row.mt-3
     = f.file_field :avatar
+    %small= f.error :avatar, class: 'text-danger'
     .row.mt-3
     = f.input :description, as: :rich_text_area
     = f.input :short_description

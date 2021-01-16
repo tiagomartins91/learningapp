@@ -49,3 +49,4 @@ gem 'groupdate'
 gem 'rails-erd', group: :development #sudo apt-get install graphviz; bundle exec erd
 gem 'ranked-model'
 gem "aws-sdk-s3", require: false
+gem 'active_storage_validations'

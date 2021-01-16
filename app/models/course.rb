@@ -21,6 +21,7 @@ class Course < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
 
   has_one_attached :avatar
+  validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg], size: { less_than: 100.kilobytes , message: 'Size should be under 100 kilobytes' }
 
   def to_s
     title
