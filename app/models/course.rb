@@ -1,7 +1,9 @@
 class Course < ApplicationRecord
   validates :title, :short_description, :language, :price, :level, presence: true
-  validates :description, presence: true, length: { :minimum => 5 }
-  validates :title, uniqueness: true
+  validates :title, uniqueness: true,  length: { :maximum => 70 }
+  validates :description, presence: true, length: { :minimum => 5, :maximum => 5000 }
+  validates :short_description, length: { :maximum => 300 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :user, counter_cache: true
   #User.find_each { |user| User.reset_counters(user.id, :courses)}
@@ -21,7 +23,10 @@ class Course < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
 
   has_one_attached :avatar
-  validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg], size: { less_than: 100.kilobytes , message: 'Size should be under 100 kilobytes' }
+  #validates :avatar, attached: true,
+  validates :avatar, presence: true,
+    content_type: [:png, :jpg, :jpeg],
+    size: { less_than: 100.kilobytes , message: 'Size should be under 100 kilobytes' }
 
   def to_s
     title

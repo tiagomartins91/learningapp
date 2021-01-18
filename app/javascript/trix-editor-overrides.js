@@ -1,10 +1,8 @@
 // Blacklist all file attachments
-/*
 window.addEventListener("trix-file-accept", function (event) {
     event.preventDefault()
     alert("File attachment not supported!")
 })
-*/
 
 // Only images
 /*
@@ -15,7 +13,7 @@ window.addEventListener("trix-file-accept", function (event) {
       alert("Only support attachment of jpeg or png files!")
     }
 })
-*/
+
 
 // File size
 window.addEventListener("trix-file-accept", function (event) {
@@ -25,3 +23,4 @@ window.addEventListener("trix-file-accept", function (event) {
       alert("Only support attachment files up to size 1MB!")
     }
 })
+*/

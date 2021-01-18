@@ -5,16 +5,18 @@
 
   .form-inputs
     = f.input :title
-    = f.label :avatar
     .row
     - if @course.avatar.attached?
+      = f.label :avatar
+      .row
       = image_tag @course.avatar, width: "50px"
       //= @course.avatar.content_type
       = @course.avatar.filename
       // = @course.avatar.key
     .row.mt-3
-    = f.file_field :avatar
-    %small= f.error :avatar, class: 'text-danger'
+    //= f.file_field :avatar
+    //%small= f.error :avatar, class: 'text-danger'
+    = f.input :avatar
     .row.mt-3
     = f.input :description, as: :rich_text_area
     = f.input :short_description
