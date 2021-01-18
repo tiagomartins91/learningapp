@@ -25,7 +25,7 @@ class Course < ApplicationRecord
   has_one_attached :avatar
   #validates :avatar, attached: true,
   validates :avatar, presence: true,
-    content_type: [:png, :jpg, :jpeg],
+    content_type: %w[image/png image/jpg image/jpeg],
     size: { less_than: 100.kilobytes , message: 'Size should be under 100 kilobytes' }
 
   def to_s

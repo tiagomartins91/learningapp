@@ -6,8 +6,18 @@ class Lesson < ApplicationRecord
 
   validates :title, :content, :course, presence: true
   validates :title, length: { :maximum => 70 }
+  validates_uniqueness_of :title, scope: :course_id
 
   has_rich_text :content
+
+  has_one_attached :video
+  has_one_attached :video_thumbnail
+
+  validates :video, content_type: ['video/mp4'],
+            size: { less_than: 50.megabytes , message: 'Size should be under 50 megabytes' }
+
+  validates :video_thumbnail, content_type: %w[image/png image/jpg image/jpeg],
+            size: { less_than: 100.kilobytes , message: 'Size should be under 100 kilobytes' }
 
   extend FriendlyId
   friendly_id :title, use: :slugged
