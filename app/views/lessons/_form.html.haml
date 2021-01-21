@@ -10,7 +10,13 @@
     //  = f.association :course
     // = f.input :course_id, input_html: {value: @lesson.course_id || params[:course_id]}, as: :hidden
     %p
+    - if @lesson.video.attached?
+      = @lesson.video.filename
     = f.input :video
+    - if @lesson.video_thumbnail.attached?
+      //= image_tag @lesson.video_thumbnail, width: "50px"
+      .row
+      = @lesson.video_thumbnail.filename
     = f.input :video_thumbnail
 
   .form-actions

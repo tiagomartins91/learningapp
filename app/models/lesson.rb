@@ -19,6 +19,11 @@ class Lesson < ApplicationRecord
   validates :video_thumbnail, content_type: %w[image/png image/jpg image/jpeg],
             size: { less_than: 100.kilobytes , message: 'Size should be under 100 kilobytes' }
 
+  validates :video_thumbnail, presence: true, if: :video_present?
+  def video_present?
+    self.video.present?
+  end
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -43,6 +48,5 @@ class Lesson < ApplicationRecord
   def next
     course.lessons.where("row_order > ?", row_order).order(:row_order).first
   end
-
 
 end
