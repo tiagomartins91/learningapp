@@ -13,6 +13,9 @@
       - if @lesson.video.attached?
         %video(controls="true" poster="#{url_for @lesson.video_thumbnail}" width="80%" height="400px" preload="metadata")
           %source{src: rails_blob_url(@lesson.video), type:"#{@lesson.video.content_type}" }
+        // VIDEO JS
+        //= content_tag :video, id: 'my-video' do
+        //  = tag :source, src: url_for(@lesson.video), type: @lesson.video.content_type
       = lesson.content
       //- if @lesson.video_thumbnail.attached?
       //= image_tag @lesson.video_thumbnail, width: "30%", height: "50px"
