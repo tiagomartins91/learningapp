@@ -1,9 +1,8 @@
 class CommentsController < ApplicationController
 
-  before_action :set_course_lesson, only: [:create]
+  before_action :set_course_lesson, only: [:create, :destroy]
 
   def create
-
     @comment = Comment.new(comment_params)
     @comment.lesson_id = @lesson.id
     @comment.user = current_user
@@ -17,8 +16,17 @@ class CommentsController < ApplicationController
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
+  end
 
+  def destroy
+    @comment = Comment.find(params[:id])
 
+    if @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   private
