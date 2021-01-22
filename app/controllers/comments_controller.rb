@@ -21,6 +21,8 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
 
+    authorize @comment
+
     if @comment.destroy
       respond_to do |format|
         format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Comment was successfully destroyed.' }
