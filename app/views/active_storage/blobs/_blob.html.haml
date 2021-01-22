@@ -4,6 +4,8 @@
       %video(controls="true" width="100%" preload="metadata")
         %source{src: rails_blob_url(blob), type:"#{blob.content_type}"}
       = image_tag blob.representation(resize_to_limit: [ 50, 50 ])
+      %audio{:controls => ""}
+        %source{src: rails_blob_url(blob), type:"#{blob.content_type}"}
   %figcaption.attachment__caption
     - if caption = blob.try(:caption)
       = caption
