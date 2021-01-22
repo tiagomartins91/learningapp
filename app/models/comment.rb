@@ -5,4 +5,7 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user rescue nil }
+
 end
