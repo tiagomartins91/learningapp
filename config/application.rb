@@ -17,8 +17,11 @@ module Learningapp
       end
     end
 
-    #video preview for action_text
-    config.after_initialize do
+
+    config.to_prepare do
+      ActionText::ContentHelper::allowed_tags << "iframe" #youtube embed
+
+      #video preview for action_text
       ActionText::ContentHelper.allowed_attributes.add 'style'
       ActionText::ContentHelper.allowed_attributes.add 'controls'
 
