@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2021_01_22_190300) do
     t.bigint "user_id", null: false
     t.bigint "lesson_id", null: false
     t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["lesson_id"], name: "index_comments_on_lesson_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
