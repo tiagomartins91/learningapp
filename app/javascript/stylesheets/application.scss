@@ -6,3 +6,9 @@ body { background-color: #EDF1F7}
 .form-control.is-valid { background-image: none; }
 
 .ui-state-highlight { height: 3em; line-height: 1.2em; background-color: yellow; }
+
+//dropdown on top of all other content
+.dropdown {z-index: 9999;}
+
+//simple form input for rich_text_area
+trix-editor.form-control { height: auto; }
