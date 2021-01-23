@@ -53,4 +53,8 @@ $(document).on('turbolinks:load', function() {
             console.log('Stop called when finishing sort of cards');
         }
     });
+
+    $("video").bind("contextmenu", function(){
+        return false;
+    })
 });

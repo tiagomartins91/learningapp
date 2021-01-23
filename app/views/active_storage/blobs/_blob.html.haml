@@ -1,7 +1,7 @@
 %figure{:class => "attachment attachment--#{blob.representable? ? "preview" : "file"} attachment--#{blob.filename.extension}"}
   - if blob.representable?
     - if blob.present?
-      %video(controls="true" width="100%" preload="metadata")
+      %video(controls="true" width="100%" preload="metadata" controlslist="nodownload")
         %source{src: rails_blob_url(blob), type:"#{blob.content_type}"}
       = image_tag blob.representation(resize_to_limit: [ 50, 50 ])
       %audio{:controls => ""}
