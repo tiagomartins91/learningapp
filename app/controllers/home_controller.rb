@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:index]
+  skip_before_action :authenticate_user!, :only => [:index, :privacy_policy]
   def index
     @latest = Course.all.latest_courses.published.approved
     @latest_good_reviews = Enrollment.reviewed.latest_good_reviews
@@ -26,6 +26,9 @@ class HomeController < ApplicationController
     #@users = User.all
     #@enrollments = Enrollment.all
     #@courses = Course.all
+  end
+
+  def privacy_policy
   end
 
 end
