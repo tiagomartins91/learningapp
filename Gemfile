@@ -36,7 +36,7 @@ gem "jquery-rails"
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'simple_form'
 gem 'faker'
-gem 'devise'
+gem 'devise', :git => "https://github.com/heartcombo/devise.git", ref: '8bb358cf80a632d3232c3f548ce7b95fd94b6eb2'
 gem 'friendly_id', '~> 5.4.0'
 gem 'ransack'
 gem 'public_activity'
@@ -52,3 +52,4 @@ gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
+gem 'omniauth-google-oauth2'
