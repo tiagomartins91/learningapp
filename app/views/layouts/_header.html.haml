@@ -4,7 +4,7 @@
     Learning App
   %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
-  #navbarNavSupportedContent.collapse.navbar-collapse.justify-content-end
+  #navbarNav.collapse.navbar-collapse.justify-content-end
     - if current_user
       %ul.navbar-nav.mr-auto
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
