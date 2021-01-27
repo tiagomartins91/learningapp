@@ -369,7 +369,6 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
-  omniauth
   omniauth-google-oauth2
   pagy
   pg (>= 0.18, < 2.0)

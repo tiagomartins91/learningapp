@@ -52,5 +52,4 @@ gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
-gem 'omniauth'
 gem 'omniauth-google-oauth2'
