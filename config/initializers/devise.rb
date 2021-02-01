@@ -271,7 +271,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :github, '6060eb0175a7cebaf650', 'f41793120cc66fbd7cb093d8679e16f89458e0b0', scope: 'user,public_repo', callback_url: "http://localhost:3000/users/auth/github/callback"
   config.omniauth :google_oauth2, "#{Rails.application.credentials.dig(:google_oauth2, :client_id)}", "#{Rails.application.credentials.dig(:google_oauth2, :client_secret)}"
 
   # ==> Warden configuration
@@ -295,7 +295,7 @@ Devise.setup do |config|
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
-  # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.omniauth_path_prefix = '/users/auth'
 
   # ==> Turbolinks configuration
   # If your app is using Turbolinks, Turbolinks::Controller needs to be included to make redirection work correctly:

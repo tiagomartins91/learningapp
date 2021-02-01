@@ -61,6 +61,7 @@
     <orderEntry type="library" scope="PROVIDED" name="choice (v0.2.0, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.7, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, Remote: ruby-2.7.2-p137) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise (v4.7.3@8bb358, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.10.0, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="exception_notification (v4.4.3, Remote: ruby-2.7.2-p137) [gem]" level="application" />
@@ -102,6 +103,7 @@
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.11.1, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="oauth2 (v1.4.4, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth (v2.0.1, Remote: ruby-2.7.2-p137) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth-github (v2.0.0@1f7722, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth-google-oauth2 (v0.8.1, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.7.1, Remote: ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, Remote: ruby-2.7.2-p137) [gem]" level="application" />

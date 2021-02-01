@@ -53,3 +53,4 @@ gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
